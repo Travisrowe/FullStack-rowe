@@ -4,6 +4,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "bento/ubuntu-16.04"
+  config.vm.provision :shell, path: "bootstrap.sh"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -22,26 +23,5 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "www", "/var/www"
   #config.vm.synced_folder "scripts", "/opt/scripts"
   config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    apt-get install -y apache2
-    apt-get install -y curl
-    echo "#!/bin/bash
-    function InstallPip {
-      if [ '$(which pip)' ]; then
-        echo '-- Already installed.'
-        return
-      fi
-      apt-get install python-dev python-setuptools -y -qq
-      apt-get install -y python-pip
-      pip install --upgrade pip
-      apt-get install -y mongodb
-      apt-get install -y python-pymongo
-      apt-get install -y python-bson
-    }
-    echo 'Installing Pip...'; InstallPip
-    echo 'Installing Flask...'; pip install flask
-    echo 'Installing requests...'; pip install requests
-	pip install flask_cors
-    exit 0" | /bin/bash
   SHELL
 end

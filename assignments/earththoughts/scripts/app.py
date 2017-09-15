@@ -38,8 +38,8 @@ def site_map():
 
 @app.route('/get_image')
 def get_image():
-    # print(request.args)
-    # return "Hello {}!".format(request.args[''])
+    print(request.args)
+    return "Hello {}!".format(request.args[''])
     image_list = []
     jsondata = json.loads(open('earthporn.json','r').read())
     for child in jsondata['data']['children']:
@@ -51,7 +51,7 @@ def get_image():
     return jsonify({"success":True,"url":image_list[0]})
 
 @app.route('/get_thought')
-def get_thought();
+def get_thought():
 	thought_list = []
 	jsondata = json.loads(open('showerthoughts.json','r').read())
 	for child in jsondata['data']['children']:

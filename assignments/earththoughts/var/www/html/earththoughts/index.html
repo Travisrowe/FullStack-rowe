@@ -36,7 +36,6 @@
   <style>
     #main_image {
         background-image: url("https://i.redd.it/fsipwrv7fgkz.jpg");
-		<!--background-image: url("/Users/Travis/earth_porn_server/www/scripts/app.py/get_image"); -->
         background-color: #17234E;
         margin-bottom: 0;`enter code here`
         min-height: 50%;
@@ -108,16 +107,16 @@
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
     <script>
         $(function() {
-            console.log( "ready!" );
+            console.log( "ready!" )
             $.get( "http://localhost:5050/get_image", function( data ) {
             
-                console.log(data.url);
-                $('#main_image').css('background-image','url('+data.url+')');
+                console.log("here.")
+                $('#main_image').css('background-image:','url("'+data.url+'")');
             });
-			
+			console.log("getting thought...")
 			$.get( "http://localhost:5050/get_thought", function( data ) {
             
-                console.log("quote ready");
+                console.log("quote ready")
 				$('#main_image').css('color','white');
 				$('#shower_quote').html("" +data.quote);
             });
