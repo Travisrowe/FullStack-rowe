@@ -39,7 +39,7 @@ def site_map():
 @app.route('/get_image')
 def get_image():
     print(request.args)
-    return "Hello {}!".format(request.args[''])
+    # return "Hello {}!".format(request.args[''])
     image_list = []
     jsondata = json.loads(open('earthporn.json','r').read())
     for child in jsondata['data']['children']:
@@ -47,7 +47,7 @@ def get_image():
     
     random.shuffle(image_list)
 
-
+    print("image ready.")
     return jsonify({"success":True,"url":image_list[0]})
 
 @app.route('/get_thought')
